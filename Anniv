@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Anniv maman</title>
+    <!-- Colle ça dans ton <head>, avant <style> -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Caveat:wght@400;600&family=Cormorant+Garamond:ital,wght@0,300;1,400&display=swap" rel="stylesheet">
+<style>
+#titre{
+    font-family: 'Caveat', cursive; 
+    background: var(--rose); 
+    color: var(--dark);
+    font-size: 25px;
+    border-radius: 10px;
+    width: 380px;
+    height: 50px;
+    display: flex;
+    justify-content: center;  /* centre horizontal */
+    align-items: center;      /* centre vertical */
+}
+:root {
+  --cream:  #ffd5f492;  /* fond crème chaud */
+  --warm:   #ede0c4;  /* fond légèrement plus foncé */
+  --tan:    #c9a96e;  /* doré vintage */
+  --brown:  #6b4c2a;  /* brun profond */
+  --dark:   #2e1f0e;  /* quasi-noir chaud */
+  --rose:   #ffaadfb7;  /* rose poudré accent */
+  --dusty:  #a07b6a;  /* brun clair texte secondaire*/
+  --ligne:  #a06b99;
+  --footer: #66ff2b;
+  --intro:  #ff946a;
+}
+
+
+body { background: var(--cream); color: var(--dark); }
+
+body {
+  background-color: var(--cream);
+}
+
+/* Grain papier (bruit SVG) */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'#ffb5aa/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+  mix-blend-mode: multiply;
+}
+
+/* Lignes horizontales style cahier */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 31px,
+    rgba(180,150,100,0.10) 31px,
+    rgba(180,150,100,0.10) 32px
+  );
+}
+
+/* IMPORTANT : tout ton contenu doit avoir z-index: 1 */
+section, header, main {
+  position: relative;
+  z-index: 1;
+}
+
+
+#Timeline{
+    width:1px;
+    height:600px;
+    background:var(--ligne);
+    position:absolute;
+    left:45px;
+}
+#footer{
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px); 
+      -webkit-backdrop-filter: blur(10px);
+      position: fixed;
+      text-align:center;
+      font-family:'Space Mono',monospace;
+      font-size:15px;
+      item-align:center;
+      height:30px;
+      border-radius: 35px;
+      bottom:15px;             
+      width:380px;    
+      background: var(--rose);
+      display: flex;
+      justify-content: center;
+      align-items:center;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 9999;
+}
+.intro{
+    border-radius:30px;
+    background:var(--intro);
+    width:380px;
+    left:4px;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    text-align:center;
+    font-size:20px;
+    height:180px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:20px;
+}
+#npp{
+    border-radius:30px;
+    background:var(--intro);
+    width:380px;
+    left:4px;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    text-align:center;
+    font-size:19px;
+    height:100px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:10px;
+}
+#ici{
+    text-align:center;
+    font-family:'Dancing Script',cursive;
+    font-style:italic;
+    font-size:20px;
+}
+#fleche{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px auto;
+}
+#fleche img {
+    width: 60px;
+    height: auto;
+    animation: bounce 1.2s ease-in-out infinite;
+}
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(10px); }
+}
+
+/* MENU BURGER */
+
+#burger{
+    position:fixed;
+    top:20px;
+    right:20px;
+    font-size:35px;
+    z-index:999;
+    cursor:pointer;
+    background:var(--rose);
+    width:45px;
+    height:45px;
+    border-radius:10px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    box-shadow:0 5px 15px rgba(0,0,0,0.15);
+}
+
+#menu{
+    position:fixed;
+    top:85px;
+    right:20px;
+    background:var(--warm);
+    border-radius:20px;
+    padding:15px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    z-index:999;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px);
+}
+#menu{
+    display:none;
+}
+#menu a{
+    text-decoration:none;
+    color:var(--dark);
+    font-family:'Caveat',cursive;
+    font-size:24px;
+}
+
+/* TITRES */
+
+.titre-section{
+    text-align:center;
+    font-family:'Caveat',cursive;
+    font-size:40px;
+    margin-top:80px;
+}
+
+/* POLAROID */
+
+.polaroid-container{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:30px;
+}
+
+.polaroid{
+    background:white;
+    padding:10px 10px 25px 10px;
+    width:250px;
+    transform:rotate(-2deg);
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+    border-radius:5px;
+}
+
+.polaroid:nth-child(2){
+    transform:rotate(3deg);
+}
+
+.polaroid:nth-child(3){
+    transform:rotate(-4deg);
+}
+
+.polaroid img{
+    width:100%;
+    border-radius:3px;
+    height:auto;
+}        
+
+.polaroid p{
+    text-align:center;
+    margin-top:10px;
+    font-family:'Caveat',cursive;
+    font-size:25px;
+}
+
+/* TIMELINE */
+
+.timeline-container{
+    position:relative;
+    width:90%;
+    margin:auto;
+    padding:50px 0;
+}
+
+.timeline-container::before{
+    content:'';
+    position:absolute;
+    left:20px;
+    top:0;
+    width:4px;
+    height:100%;
+    background:var(--ligne);
+}
+
+.event{
+    position:relative;
+    margin-left:60px;
+    margin-bottom:50px;
+}
+
+.dot{
+    position:absolute;
+    left:-48px;
+    top:10px;
+    width:18px;
+    height:18px;
+    border-radius:50%;
+    background:var(--rose);
+}
+
+.card{
+    background:rgba(255,255,255,0.4);
+    backdrop-filter:blur(10px);
+    padding:20px;
+    border-radius:20px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.1);
+}
+
+.card h3{
+    margin:0;
+    font-family:'Caveat',cursive;
+    font-size:30px;
+}
+
+.card p{
+    font-size:18px;
+    font-family:'Cormorant Garamond', serif;
+}
+
+
+</style>
+
+</head>
+<script>
+
+window.addEventListener("DOMContentLoaded", () => {
+
+    const burger = document.getElementById("burger");
+    const menu = document.getElementById("menu");
+
+    menu.style.display = "none";
+
+    burger.addEventListener("click", () => {
+
+        if(menu.style.display === "none"){
+            menu.style.display = "flex";
+        }else{
+            menu.style.display = "none";
+        }
+
+    });
+
+});
+
+</script>
+<body>
+     <div id="titre"><b><p>Bonne anniversaire Maman la plus belle ❤️</p></b></div> 
+  <br><br><br><br>
+<div class="intro">
+   <b><p>Tout d'abord j'aimerais m'excuser pour le leger retard de la préparation de ton cadeau mais il faut comprendre que cela demanda beaucoup de maitrise en code beaucoup de temps et d'imagination,j'ai donc chercher un cadeau originale a ta hauteur car te fair un cadeau c'est pas fair un cadeau a n'importe qui.</p></b>
+</div>
+<div class="intro">
+  <b> <p>50 ans c'est beaucoup mais c'est que la moitié de 100 , que la moitié de tes expériences vecue et encore beaucoup de chose a découvrir en famille,ou pas bref maman ne t'inquiètes pas tu n'est pas vielle et ile te reste beaucoup a vivre avant de l'etre...  et qui sait si faut d'ici la j'aurais inventé une machine pour enlever les rides😂??</p></b>
+</div>
+<div id="npp">
+   <b> <p>T'inquiètes pas c'est pas fini , vu que je n'avais pas les mots pour d'écrire notre histoire je t'ai préparé quelque surprise😌🤫✨❤️</p></b>
+</div>
+<div id="ici">
+ <b> <p>C'est par ici</p></b>
+</div>
+
+<div id="fleche">
+  <img src="fleche.png" />
+</div>
+
+<div id="timeline..."></div>
+<!-- MENU BURGER -->
+<div id="burger">☰</div>
+
+<div id="menu">
+  <a href="#">Principale</a>
+  <a href="#souvenirs">Souvenirs</a>
+  <a href="#timeline-section">Timeline</a>
+</div>
+
+<!-- SECTION SOUVENIRS -->
+<section id="souvenirs">
+
+<h2 class="titre-section">Quelques souvenirs 🥰   <br>   (Dont je me souviens)</h2>
+
+<div class="polaroid-container">
+
+  <div class="polaroid">
+    <img src="famille3.png">
+    <p>New YOOOOOOOOOORK</p>
+  </div>
+
+  <div class="polaroid">
+    <img src="famille2.png">
+    <p>Papa toujours stressé par l'aeroport 😂</p>
+  </div>
+
+  <div class="polaroid">
+    <img src="famille1.png">
+    <p>La meilleur photo en famille <br>❤️❤️</p>
+  </div>
+
+</div>
+
+</section>
+
+<!-- TIMELINE -->
+<section id="timeline-section">
+
+<h2 class="titre-section">Notre histoire ✨</h2>
+
+<div class="timeline-container">
+
+  <div class="event">
+    <div class="dot"></div>
+    <div class="card">
+      <h3>2012</h3>
+      <p>MA NAISSANCE!!🎉🎉</p>
+    </div>
+  </div>
+
+  <div class="event">
+    <div class="dot"></div>
+    <div class="card">
+      <h3>2017</h3>
+      <p>Premier grand voyage en famille<br>NEW YORK✨<br>(Un souvenir lointain...)</p>
+    </div>
+  </div>
+
+  <div class="event">
+    <div class="dot"></div>
+    <div class="card">
+      <h3>2019-2021</h3>
+      <p>
+          Une nouvelle maison a Toulouse<br>(hyper grande) <br> + Une maison a oleron<br>"Ohh incroyable"</p>
+    </div>
+  </div>
+
+  <div class="event">
+    <div class="dot"></div>
+    <div class="card">
+      <h3>2024</h3>
+      <p>Voyage en Sicile en famille❤️❤️<br>"On a adoré surtout la pizza au frite 😂"</p>
+    </div>
+  </div>
+<div class="event">
+    <div class="dot"></div>
+    <div class="card">
+      <h3>2026</h3>
+      <p>Porto une ville magnifique mais très festive 😅❤️ </p>
+    </div>
+  </div>
+  
+  
+  
+  
+</div>
+
+</section>
+</body>
+<div id="footer"><footer>♡ Pour l'anniversaire de ma maman préfèré ♡</footer></div>
+</html>
